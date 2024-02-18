@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif;
+  }
+  body {
+    background-color: #d5e0d8;
+  }
+  .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    width: 40%;
+    margin: 10px 20px 10px 100px;
+    padding: 10px;
+  }
+  .logo h2 {
+    font-weight: normal;
+  }
+  
+  /* Form section  */
+  .card {
+    width: 90%;
+    max-width: 350px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin: 10px 100px 10px 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 10px 6px 1px #b3bdb6;
+    background-color: white;
+  }
+  label {
+    font-size: 1.2rem;
+    font-weight: bold;
+   display: flex;
+  }
+  input[id="Username"],
+  input[id="Password"] {
+    width: 100%;
+    height: 3rem;
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(212, 210, 210);
+  }
+  #error-message{
+    color: red;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(212, 210, 210);
+    background-color: #f7d7d7;
+    display: none;
+  }
+  #log-in {
+    width: 100%;
+    height: 3rem;
+    border-radius: 5px;
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    border: 1px solid rgb(212, 210, 210);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(252, 250, 250);
+    cursor: pointer;
+  }
+  #hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+ 
+  .card a {
+    color: #17b4e8;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .card a:hover {
+    color: #07799f;
+  }
+  .card a:last-child {
+    text-decoration: none;
+    font-weight: normal;
+    color: white;
+    font-weight: bold;
+  }
+  
+  @media screen and (min-width: 30px) and (max-width: 800px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .logo {
+      width: 100%;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+    .card {
+      max-width: 300px;
+      min-height: 250px;
+      display: flex;
+      align-items: flex-start;
+      align-items: center;
+      align-self: center;
+      text-align: center;
+      justify-content: center;
+      margin: 20px 10px 10px 10px;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 10px;
+      box-shadow: 5px 10px 6px 1px #b3bdb6;
+      background-color: white;
+    }
+  }
+  
