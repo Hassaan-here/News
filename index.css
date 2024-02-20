@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+#logo-img {
+    max-height: 70px;
+}
+/* Categories */
+.card{
+    box-shadow: 15px 20px 10px  lightgray;
+}
+.card-img-top {
+width: 100%;
+height: 15vw;
+object-fit: cover;
+}
