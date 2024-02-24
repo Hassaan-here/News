@@ -1,4 +1,4 @@
-<?php include 'nav.php' ?>
+<?php include 'nav.php'  ?>
 
 <style>
     body {
@@ -57,7 +57,12 @@
                                 }
                                 ?></td>
                             <td><?php echo $row['DATE'] ?></td>
-                            <td><?php echo $row['AUTHOR'] ?></td>
+                            <td><?php
+                                if ($row['AUTHOR'] == 1) {
+                                    echo "Admin";
+                                } else {
+                                    echo "Editor";
+                                }   ?></td>
                             <td><button class="btn btn-primary btn-sm w-auto">Edit</button></td>
                             <td><button class="btn btn-danger btn-sm w-auto">Delete</button></td>
                         </tr>
