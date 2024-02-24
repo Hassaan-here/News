@@ -39,16 +39,28 @@
                 <tbody>
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
-                     ?>
-                    <tr>
-                        <td><?php echo $row['ID'] ?></td>
-                        <td><?php echo $row['Title'] ?></td>
-                        <td><?php echo $row['Category'] ?></td>
-                        <td><?php echo $row['DATE'] ?></td>
-                        <td><?php echo $row['AUTHOR'] ?></td>
-                        <td><button class="btn btn-primary btn-sm w-auto">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm w-auto">Delete</button></td>
-                    </tr>
+                    ?>
+                        <tr>
+                            <td><?php echo $row['ID'] ?></td>
+                            <td><?php echo $row['Title'] ?></td>
+                            <td><?php
+                                if ($row['Category'] == 1) {
+                                    echo "Technology";
+                                } else if ($row['Category'] == 2) {
+                                    echo "Travel";
+                                } else if ($row['Category'] == 3) {
+                                    echo "Food";
+                                } else if ($row['Category'] == 4) {
+                                    echo "Health";
+                                } else {
+                                    echo "Sports";
+                                }
+                                ?></td>
+                            <td><?php echo $row['DATE'] ?></td>
+                            <td><?php echo $row['AUTHOR'] ?></td>
+                            <td><button class="btn btn-primary btn-sm w-auto">Edit</button></td>
+                            <td><button class="btn btn-danger btn-sm w-auto">Delete</button></td>
+                        </tr>
                     <?php
                     }
                     ?>
@@ -56,11 +68,10 @@
             </table>
 
         <?php
-        }
-         else {
+        } else {
             echo "No records found";
         }
-         ?>
+        ?>
 
     </div>
 </div>
