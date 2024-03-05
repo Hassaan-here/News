@@ -27,12 +27,12 @@
         }
         $offset = ($page - 1) * $limit;
         if ($_SESSION['user_role'] == '1') {
-            $sql = "SELECT post.ID, post.Title,category.Category_Name, post.DATE, user.User_Name FROM post 
+            $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name, post.DATE, user.User_Name FROM post 
             LEFT JOIN category ON post.Category = category.ID
             LEFT JOIN user ON post.AUTHOR = user.ID
             LIMIT {$offset},{$limit}";
         }else if(($_SESSION['user_role'] == '0')){
-            $sql = "SELECT post.ID, post.Title,category.Category_Name, post.DATE, user.User_Name FROM post 
+            $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name, post.DATE, user.User_Name FROM post 
             LEFT JOIN category ON post.Category = category.ID
             LEFT JOIN user ON post.AUTHOR = user.ID
             WHERE post.AUTHOR = {$_SESSION['user_id']}
@@ -63,10 +63,10 @@
                             <td><?php echo $row['ID'] ?></td>
                             <td><?php echo $row['Title'] ?></td>
                             <td><?php echo $row['Category_Name'] ?></td>
-                            <td><?php echo $row['DATE'] ?></td>
+                            <td><?php echo $row['DATE'] ?></td> 
                             <td><?php echo $row['User_Name']  ?></td>
-                            <td><button class="btn btn-primary btn-sm w-auto">Edit</button></td>
-                            <td><button class="btn btn-danger btn-sm w-auto">Delete</button></td>
+                            <td><button class="btn btn-primary btn-sm w-auto"><a href="editpost.php? id=<?php echo $row['ID']?>" class="text-light text-decoration-none">Edit</a></button></td>
+                            <td><button class="btn btn-danger btn-sm w-auto"><a href="deletepost.php? id=<?php echo $row['ID']?> & category=<?php echo $row['Category']?>"class="text-light text-decoration-none">Delete</a></button></td>
                         </tr>
                     <?php
                     }
