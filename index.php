@@ -2,7 +2,7 @@
 include "head.php";
 ?>
 <!-- post-container -->
-<div class="row">
+<div class="row m-3">
   <div class="col-md-8">
     <div class="container p-3">
       <div class="row">
@@ -38,7 +38,6 @@ include "head.php";
     </div>
   </div>
   <div class="col-md-4">
-    <hr />
     <div class="container bg-light border border-outline-secondary" style="overflow-y: auto">
       <div class="row justify-content-center align-items-center text-center mt-3">
         <h5>Recent Posts</h5>
