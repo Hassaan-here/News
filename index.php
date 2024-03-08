@@ -3,7 +3,7 @@ include "head.php";
 ?>
 <!-- post-container -->
 <div class="row m-3">
-  <div class="col-md-8">
+  <div class="col-md-8 bg-white">
     <div class="container p-3">
       <?php
       $connection = mysqli_connect("localhost", "root", "", "newsite") or die("not connected" . mysqli_error($connection));
@@ -27,12 +27,12 @@ include "head.php";
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-4 justify-conetnt-center align-items-center">
-                  <a href="single.php">
+                  <a href="more.php?id=<?php echo $row['ID']?>">
                     <img class="img-fluid h-auto" src="admin-panel/upload/<?php echo $row['Picture']; ?>" alt="" />
                   </a>
                 </div>
                 <div class="col-md-8 p-2">
-                  <h4><a href="single.php" class="text-decoration-none text-dark"><?php echo $row['Title'] ?></a></h4>
+                  <h4><a href="more.php?id=<?php echo $row['ID'];?>" class="text-decoration-none text-dark"><?php echo $row['Title'] ?></a></h4>
                   <div>
                     <span>
                       <i class="fa fa-tags" aria-hidden="true"></i>
@@ -48,11 +48,11 @@ include "head.php";
                     </span>
                   </div>
                   <p class="description">
-                    <?php echo $row['Description'] ?>
+                    <?php echo substr($row['Description'],0,100)."...." ?>
                   </p>
-                  <a class="read-more btn btn-primary btn-sm pull-right" href="more.php">Read more</a>
+                  <a class="btn btn-primary btn-sm" href="more.php?id=<?php echo $row['ID'];?>">Read more</a>
                 </div>
-                <hr />
+                <hr class="mt-2" />
               </div>
             </div>
           </div>
@@ -83,8 +83,8 @@ include "head.php";
 
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="container bg-light border border-outline-secondary" style="overflow-y: auto">
+  <div class="col-md-4 bg-white border border-outline-secondary">
+    <div class="container  " style="overflow-y: auto">
       <div class="row justify-content-center align-items-center text-center mt-3">
         <h5>Recent Posts</h5>
       </div>
