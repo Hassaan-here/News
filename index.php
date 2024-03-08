@@ -5,36 +5,82 @@ include "head.php";
 <div class="row m-3">
   <div class="col-md-8">
     <div class="container p-3">
-      <div class="row">
-        <div class="col-md-12">
+      <?php
+      $connection = mysqli_connect("localhost", "root", "", "newsite") or die("not connected" . mysqli_error($connection));
+      $limit = 3;
+      if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+      } else {
+        $page = 1;
+      }
+      $offset = ($page - 1) * $limit;
+      $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name,post.Description, post.DATE,post.Picture, user.User_Name FROM post 
+            LEFT JOIN category ON post.Category = category.ID
+            LEFT JOIN user ON post.AUTHOR = user.ID
+            LIMIT {$offset},{$limit}";
+
+      $result = mysqli_query($connection, $sql);
+      if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+      ?>
           <div class="row">
-            <div class="col-md-4">
-              <a href="single.php"><img class="img-fluid" src="images/post-format.jpg" alt="" /></a>
-            </div>
-            <div class="col-md-8">
-              <h4><a href="single.php" class="text-decoration-none text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></h4>
-              <div>
-                <span>
-                  <i class="fa fa-tags" aria-hidden="true"></i>
-                  <a href="category.php" class="text-decoration-none text-dark">PHP</a>
-                </span>
-                <span>
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="author.php" class="text-decoration-none text-dark">Admin</a>
-                </span>
-                <span>
-                  <i class="fa fa-calendar" aria-hidden="true"></i>
-                  01 Nov, 2019
-                </span>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-4 justify-conetnt-center align-items-center">
+                  <a href="single.php">
+                    <img class="img-fluid h-auto" src="admin-panel/upload/<?php echo $row['Picture']; ?>" alt="" />
+                  </a>
+                </div>
+                <div class="col-md-8 p-2">
+                  <h4><a href="single.php" class="text-decoration-none text-dark"><?php echo $row['Title'] ?></a></h4>
+                  <div>
+                    <span>
+                      <i class="fa fa-tags" aria-hidden="true"></i>
+                      <a href="category.php" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
+                    </span>
+                    <span>
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <a href="author.php" class="text-decoration-none text-dark"><?php echo $row['User_Name'] ?></a>
+                    </span>
+                    <span>
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <?php echo $row['DATE'] ?>
+                    </span>
+                  </div>
+                  <p class="description">
+                    <?php echo $row['Description'] ?>
+                  </p>
+                  <a class="read-more btn btn-primary btn-sm pull-right" href="more.php">Read more</a>
+                </div>
+                <hr />
               </div>
-              <p class="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
-              </p>
-              <a class="read-more btn btn-primary btn-sm pull-right" href="single.php">Read more</a>
             </div>
           </div>
-        </div>
-      </div>
+      <?php
+        }  //while loop closed
+      } else {
+        echo "No Record Found";
+      }
+
+      $sql1 = "SELECT * FROM post";
+      $result1 = mysqli_query($connection, $sql1);
+      $total_records = mysqli_num_rows($result1);
+      $total_pages = ceil($total_records / $limit);
+
+      echo "<ul class='pagination justify-content-center mt-5 mb-5'>";
+      if ($page > 1) {
+        echo "<li class='page-item'><a class='page-link' href='index.php?page=" . ($page - 1) . "'>Previous</a></li>";
+      }
+      for ($i = 1; $i <= $total_pages; $i++) {
+        echo " <li class='page-item '><a class='page-link' href='index.php?page=" . $i . "'>{$i}</a></li>";
+      }
+      if ($page < $total_pages) {
+        echo "<li class='page-item'><a class='page-link' href='index.php?page=" . ($page + 1) . "'>Next</a></li>";
+      }
+      echo "</ul>";
+
+      ?>
+
     </div>
   </div>
   <div class="col-md-4">
@@ -128,6 +174,8 @@ include "head.php";
       </div>
     </div>
   </div>
+
+
 </div><!-- /post-container -->
 
 

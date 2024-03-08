@@ -1,4 +1,5 @@
-
+<section id="footer">
+  
  <!-- footer -->
  <footer class="py-5">
       <div class="container">
@@ -60,3 +61,4 @@
         </div>
       </div>
     </footer>
+</section>

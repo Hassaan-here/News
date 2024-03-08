@@ -57,12 +57,12 @@
               <li class="nav-item active">
                 <a
                   class="nav-link fs-5 fw-bolder text-white px-2 mx-2"
-                  href="#Categories"
+                  href="#"
                   >Categories</a
                 >
               </li>
               <li class="nav-item active">
-                <a class="nav-link fs-5 fw-bolder text-white px-2 mx-2" href="#"
+                <a class="nav-link fs-5 fw-bolder text-white px-2 mx-2" href="#footer"
                   >Contact</a
                 >
               </li>
