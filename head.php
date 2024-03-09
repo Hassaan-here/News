@@ -37,10 +37,14 @@
             <ul class="navbar-nav px-4">
               <?php
               while ($row = mysqli_fetch_assoc($result)) {
-                $active = ($row['ID'] == $category_id) ? 'active' : '';
+                if ($row['ID'] == $category_id) {
+                  $active = "active";
+                } else {
+                  $active="";
+                }
 
                 echo '<li class="nav-item">
-            <a class="' . $active . ' nav-link text-white fs-5 fw-bolder px-2 mx-2"
+            <a class="' . $active . ' nav-link  fs-5 fw-bolder px-2 mx-2"
                href="index.php?id=' . $row["ID"] . '">
                ' . $row["Category_Name"] . '
             </a>
