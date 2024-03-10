@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-4 justify-conetnt-center align-items-center">
+                                        <div class="col-md-4 justify-content-center align-items-center">
                                             <a href="more.php?id=<?php echo $row['ID'] ?>">
                                                 <img class="img-fluid h-auto" src="admin-panel/upload/<?php echo $row['Picture']; ?>" alt="" />
                                             </a>
@@ -42,7 +42,7 @@
                                             <div>
                                                 <span>
                                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                                    <a href="category.php" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
+                                                    <a href="categories.php?id=<?php echo $row['Category'] ?>" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>

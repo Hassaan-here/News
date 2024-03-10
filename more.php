@@ -23,7 +23,7 @@
                                 <div class="post-information">
                                     <span>
                                         <i class="fa fa-tags" aria-hidden="true"></i>
-                                        <?php echo $row['Category_Name'] ?>
+                                        <a href="categories.php?id=<?php echo $row['Category'] ?>" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
                                     </span>
                                     <span>
                                         <i class="fa fa-user" aria-hidden="true"></i>

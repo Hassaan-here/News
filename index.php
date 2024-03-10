@@ -36,7 +36,7 @@ include "head.php";
                   <div>
                     <span>
                       <i class="fa fa-tags" aria-hidden="true"></i>
-                      <a href="category.php" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
+                      <a href="categories.php?id=<?php echo $row['Category']?>" class="text-decoration-none text-dark"><?php echo $row['Category_Name'] ?></a>
                     </span>
                     <span>
                       <i class="fa fa-user" aria-hidden="true"></i>
