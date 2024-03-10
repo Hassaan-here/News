@@ -14,7 +14,7 @@ include "head.php";
         $page = 1;
       }
       $offset = ($page - 1) * $limit;
-      $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name,post.Description, post.DATE,post.Picture, user.User_Name FROM post 
+      $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name,post.Description,post.AUTHOR, post.DATE,post.Picture, user.User_Name FROM post 
             LEFT JOIN category ON post.Category = category.ID
             LEFT JOIN user ON post.AUTHOR = user.ID
             LIMIT {$offset},{$limit}";
@@ -40,7 +40,7 @@ include "head.php";
                     </span>
                     <span>
                       <i class="fa fa-user" aria-hidden="true"></i>
-                      <a href="author.php" class="text-decoration-none text-dark"><?php echo $row['User_Name'] ?></a>
+                      <a href="author.php?id=<?php echo $row['AUTHOR']?>" class="text-decoration-none text-dark"><?php echo $row['User_Name'] ?></a>
                     </span>
                     <span>
                       <i class="fa fa-calendar" aria-hidden="true"></i>
