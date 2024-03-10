@@ -20,32 +20,39 @@
     <!-- navbar start here-->
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-expand-md bg-primary">
-        <a class="navbar-brand" href="#"><img id="logo-img" class="img-fluid" src="images/Logo.jpg" alt="Brand-Logo" /></a>
+        <a class="navbar-brand" href="index.php"><img id="logo-img" class="img-fluid" src="images/Logo.jpg" alt="Brand-Logo" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <?php
           $connection = mysqli_connect("localhost", "root", "", "newsite") or die("not connected" . mysqli_error($connection));
+          if (isset($_GET['id'])) {
+            $category_id = $_GET['id'];
+          }
 
-          $category_id = $_GET['id'];
           $sql = "SELECT * FROM category
             WHERE No_of_Posts>0";
           $result = mysqli_query($connection, $sql) or die("Query Failed");
           if (mysqli_num_rows($result) > 0) {
+            $active = "";
           ?>
             <ul class="navbar-nav px-4">
+              <li class="nav-item">
+                <a class="nav-link  fs-5 fw-bolder px-2 mx-2 scaling-link" href="index.php">Home</a>
+              </li>
               <?php
               while ($row = mysqli_fetch_assoc($result)) {
-                if ($row['ID'] == $category_id) {
-                  $active = "active";
-                } else {
-                  $active="";
+                if (isset($_GET['id'])) {
+                  if ($row['ID'] == $category_id) {
+                    $active = "active";
+                  } else {
+                    $active = "";
+                  }
                 }
-
                 echo '<li class="nav-item">
-            <a class="' . $active . ' nav-link  fs-5 fw-bolder px-2 mx-2"
-               href="index.php?id=' . $row["ID"] . '">
+            <a class="' . $active . ' nav-link  fs-5 fw-bolder px-2 mx-2 scaling-link"
+               href="categories.php?id=' . $row["ID"] . '">
                ' . $row["Category_Name"] . '
             </a>
           </li>';
@@ -59,6 +66,7 @@
           }
           ?>
         </div>
+
         <!-- For Large screens -->
         <div class="row justify-content-center align-items-center mt-1 d-none" id="largeScreens">
           <div class="input-group px-4 py-4">

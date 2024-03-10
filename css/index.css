@@ -19,3 +19,12 @@ object-fit: cover;
 }
 
 /*  */
+
+  .scaling-link {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .scaling-link:hover {
+    transform: scale(1.1);
+  }
+
