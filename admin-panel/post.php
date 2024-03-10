@@ -95,7 +95,12 @@
                 echo "<li class='page-item'><a class='page-link' href='post.php?page=" . ($page - 1) . "'>Previous</a></li>";
             }
             for ($i = 1; $i <= $total_pages; $i++) {
-                echo " <li class='page-item '><a class='page-link' href='post.php?page=" . $i . "'>{$i}</a></li>";
+                if ($i == $page) {
+                    $active = "active";
+                } else {
+                    $active = "";
+                }
+                echo " <li class='page-item {$active}'><a class='page-link' href='post.php?page=" . $i . "'>{$i}</a></li>";
             }
             if ($page < $total_pages) {
                 echo "<li class='page-item'><a class='page-link' href='post.php?page=" . ($page + 1) . "'>Next</a></li>";
