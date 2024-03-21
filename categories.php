@@ -5,25 +5,22 @@
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
-                    <h2 class="page-heading">Category Name</h2>
                     <?php
                     $connection = mysqli_connect("localhost", "root", "", "newsite") or die("not connected" . mysqli_error($connection));
                     if (isset($_GET['id'])) {
                         $category_id = $_GET['id'];
+                        $sql1 = "SELECT * FROM post JOIN category
+                        ON post.Category=category.ID WHERE post.Category = {$category_id}";
+                        $result1 = mysqli_query($connection, $sql1) or die("Query Failed");
+                        $row1 = mysqli_fetch_assoc($result1);
                     }
-
-                    $limit = 3;
-                    if (isset($_GET['page'])) {
-                        $page = $_GET['page'];
-                    } else {
-                        $page = 1;
-                    }
-                    $offset = ($page - 1) * $limit;
+                    ?>
+                    <h2 class="page-heading"><?php echo $row1['Category_Name'] ?></h2>
+                    <?php
                     $sql = "SELECT post.ID, post.Title,post.Category,category.Category_Name,post.Description, post.DATE,post.Picture, user.User_Name FROM post 
-            LEFT JOIN category ON post.Category = category.ID
-            LEFT JOIN user ON post.AUTHOR = user.ID
-            WHERE post.Category = {$category_id}
-            LIMIT {$offset},{$limit}";
+                    LEFT JOIN category ON post.Category = category.ID
+                    LEFT JOIN user ON post.AUTHOR = user.ID
+                    WHERE post.Category = {$category_id}";
 
                     $result = mysqli_query($connection, $sql);
                     if (mysqli_num_rows($result) > 0) {
@@ -67,29 +64,6 @@
                     } else {
                         echo "No Record Found";
                     }
-
-                    $sql1 = "SELECT No_of_Posts FROM category where ID = {$category_id}";
-                    $result1 = mysqli_query($connection, $sql1);
-                    $total_records = mysqli_num_rows($result1);
-                    $total_pages = ceil($total_records / $limit);
-
-                    echo "<ul class='pagination justify-content-center mt-5 mb-5'>";
-                    if ($page > 1) {
-                        echo "<li class='page-item'><a class='page-link' href='index.php?category_id=" . $category_id . " & page=" . ($page - 1) . "'>Previous</a></li>";
-                    }
-                    for ($i = 1; $i <= $total_pages; $i++) {
-                        if ($i == $page) {
-                            $active = "active";
-                        } else {
-                            $active = "";
-                        }
-                        echo " <li class='page-item {$active}'><a class='page-link' href='index.php?category_id=" . $category_id . "&page=" . $i . "'>{$i}</a></li>";
-                    }
-                    if ($page < $total_pages) {
-                        echo "<li class='page-item'><a class='page-link' href='index.php? category_id=" . $category_id . "&page=" . ($page + 1) . "'>Next</a></li>";
-                    }
-                    echo "</ul>";
-
                     ?>
                 </div><!-- /post-container -->
             </div>
